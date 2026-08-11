@@ -5,14 +5,33 @@
   "arrival_port": "jp_tokyo",
   "eta_iso": "2026-08-20T00:00:00Z",
   "cargo_units": [
-    {"slot": "A1", "type": "container", "weight_kg": 24000, "hazard": false},
-    {"slot": "A2", "type": "container", "weight_kg": 18500, "hazard": false},
-    {"slot": "B1", "type": "tanker_segment", "weight_kg": 42000, "hazard": true}
+    {
+      "slot": "A1",
+      "type": "container",
+      "weight_kg": 24000,
+      "hazard": false
+    },
+    {
+      "slot": "A2",
+      "type": "container",
+      "weight_kg": 18500,
+      "hazard": false
+    },
+    {
+      "slot": "B1",
+      "type": "tanker_segment",
+      "weight_kg": 42000,
+      "hazard": true
+    }
   ],
   "load_plan": {
     "center_of_gravity_x": 12.4,
     "center_of_gravity_y": 0.0,
     "center_of_gravity_z": 8.2,
     "stability_margin": 1.4
+  },
+  "radar_package": {
+    "ping_broadcast": "Systems/Radar/PingBroadcast.json",
+    "anticrash_policy": "Systems/Radar/AnticrashPolicy.json"
   }
 }

@@ -1,0 +1,26 @@
+{
+  "ping": {
+    "vessel_id": "string",
+    "vessel_class": "freight_carrier|ferry|speedboat",
+    "timestamp_iso": "ISO8601",
+    "position": {"x": 0.0, "y": 0.0, "z": 0.0},
+    "heading_deg": 0.0,
+    "speed_knots": 0.0,
+    "range_m": 0.0,
+    "intent": "transit|docking|fishing|idle"
+  },
+  "avoidance_policy": {
+    "time_horizon_s": 120,
+    "cpa_limit_m": 200,
+    "reaction": {
+      "freight_carrier": "course_offset+slow",
+      "ferry": "course_offset+notify",
+      "speedboat": "course_offset+fast"
+    },
+    "classes": {
+      "freight_carrier": {"stop_distance_m": 800, "turn_radius_m": 600},
+      "ferry": {"stop_distance_m": 350, "turn_radius_m": 220},
+      "speedboat": {"stop_distance_m": 80, "turn_radius_m": 35}
+    }
+  }
+}

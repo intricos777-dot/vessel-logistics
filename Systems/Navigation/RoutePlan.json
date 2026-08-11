@@ -10,5 +10,10 @@
     {"lat": 36.0, "lon": -160.0, "action": "waypoint"}
   ],
   "max_speed_knots": 18.5,
-  "fuel_reserve_hours": 48.0
+  "fuel_reserve_hours": 48.0,
+  "avoidance": {
+    "enabled": true,
+    "radar_source": "Systems/Radar/PingBroadcast.json",
+    "policy": "Systems/Radar/AnticrashPolicy.json"
+  }
 }
