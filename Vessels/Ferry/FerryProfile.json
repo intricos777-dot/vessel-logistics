@@ -1,0 +1,9 @@
+{
+  "vessel_id": "MV_ZEN_FERRY",
+  "class": "ferry",
+  "dimensions": {"length_m": 120.0, "beam_m": 20.0, "draft_m": 4.8},
+  "capacity": {"passengers": 600, "vehicles": 180},
+  "max_speed_knots": 23.0,
+  "crew": 18,
+  "routes": ["coastal", "inland"]
+}

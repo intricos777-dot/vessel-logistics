@@ -1,0 +1,12 @@
+{
+  "queue_id": "INBOUND-20260811",
+  "entries": [
+    {
+      "manifest_id": "SHIP-0001",
+      "expected_dock": "Dock-7",
+      "offload_sequence": ["A2", "A1", "B1"],
+      "priority": 1,
+      "crane_assignment": "Crane-3"
+    }
+  ]
+}

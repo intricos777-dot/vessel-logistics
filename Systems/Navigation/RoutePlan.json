@@ -1,0 +1,14 @@
+{
+  "route_id": "RT-20260811",
+  "vessel_class": "freight_carrier",
+  "origin": {"port": "us_lax", "lat": 33.75, "lon": -118.25},
+  "destination": {"port": "jp_tokyo", "lat": 35.45, "lon": 139.75},
+  "waypoints": [
+    {"lat": 34.0, "lon": -130.0, "action": "transit"},
+    {"lat": 37.0, "lon": -150.0, "action": "weather_avoidance"},
+    {"lat": 40.0, "lon": -170.0, "action": "transit"},
+    {"lat": 36.0, "lon": -160.0, "action": "waypoint"}
+  ],
+  "max_speed_knots": 18.5,
+  "fuel_reserve_hours": 48.0
+}

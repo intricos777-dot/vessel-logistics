@@ -1,0 +1,75 @@
+{
+  "vessel_classes": [
+    {
+      "id": "freight_carrier",
+      "name": "Freight Carrier",
+      "min_draft_m": 12.0,
+      "max_draft_m": 18.0,
+      "min_length_m": 180.0,
+      "max_length_m": 400.0,
+      "max_cargo_teu": 20000,
+      "crew_min": 20,
+      "crew_max": 50,
+      "nav_modes": ["open_ocean", "coastal", "inland"],
+      "comm_bands": ["vhf", "hf", "satellite", "ais"]
+    },
+    {
+      "id": "ferry",
+      "name": "Ferry",
+      "min_draft_m": 3.0,
+      "max_draft_m": 6.0,
+      "min_length_m": 60.0,
+      "max_length_m": 250.0,
+      "passenger_max": 2500,
+      "vehicle_lanes_max": 800,
+      "crew_min": 8,
+      "crew_max": 40,
+      "nav_modes": ["coastal", "inland"],
+      "comm_bands": ["vhf", "ais"]
+    },
+    {
+      "id": "speedboat",
+      "name": "Speedboat",
+      "min_draft_m": 0.3,
+      "max_draft_m": 1.2,
+      "min_length_m": 3.0,
+      "max_length_m": 12.0,
+      "passenger_max": 12,
+      "crew_min": 1,
+      "crew_max": 6,
+      "nav_modes": ["coastal", "inland", "littoral"],
+      "comm_bands": ["vhf", "ais"]
+    }
+  ],
+  "shipping_modes": [
+    "container",
+    "bulk",
+    "tanker",
+    "roro",
+    "passenger",
+    "mixed"
+  ],
+  "navigation_presets": [
+    {
+      "id": "open_ocean_crossing",
+      "vessel_class": "freight_carrier",
+      "min_depth_m": 30.0,
+      "max_speed_knots": 22.0,
+      "weather_limit_beaufort": 8
+    },
+    {
+      "id": "ferry_route",
+      "vessel_class": "ferry",
+      "min_depth_m": 6.0,
+      "max_speed_knots": 25.0,
+      "weather_limit_beaufort": 5
+    },
+    {
+      "id": "speedboat_coastal",
+      "vessel_class": "speedboat",
+      "min_depth_m": 1.5,
+      "max_speed_knots": 45.0,
+      "weather_limit_beaufort": 3
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "vessel_id": "MV_ZEN_FREIGHT",
+  "class": "freight_carrier",
+  "dimensions": {"length_m": 250.0, "beam_m": 35.0, "draft_m": 14.5},
+  "capacity": {"teu": 8000, "weight_kg": 120000000},
+  "max_speed_knots": 22.0,
+  "crew": 35,
+  "cargo_types": ["container", "bulk", "tanker"]
+}

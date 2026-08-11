@@ -1,0 +1,10 @@
+{
+  "vessel_id": "SB_ZEN_1",
+  "class": "speedboat",
+  "dimensions": {"length_m": 7.5, "beam_m": 2.4, "draft_m": 0.9},
+  "capacity": {"passengers": 6, "gear_kg": 500},
+  "max_speed_knots": 42.0,
+  "crew": 2,
+  "fuel_capacity_l": 400,
+  "nav_modes": ["coastal", "littoral", "inland"]
+}
