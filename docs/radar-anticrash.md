@@ -13,3 +13,9 @@ python3 Systems/Radar/radar_service.py
 python3 Systems/Radar/avoidance.py
 python3 tests/test_radar_anticrash.py
 ```
+
+---
+
+## Aviation Extension
+
+Aircraft use the same `RadarService` with whale-inspired echolocation modes (`active_ping`, `passive_listen`, `doppler_shift`). See `Systems/Aviation/AircraftClasses.json` and `Systems/Aviation/FlightPlan.json` for aircraft profiles and route examples.

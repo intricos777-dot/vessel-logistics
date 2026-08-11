@@ -9,38 +9,43 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_ROOT))
 
 from Systems.Radar.radar_service import RadarService, Vec3, Ping
-from Systems.Radar.avoidance import AnticrashSystem
 
 
 def test_radar_sees_multiple_vessels():
     radar = RadarService()
+    radar.enable_multi_mode()
+    radar.ingest_ping(Ping("MV_ZEN_FREIGHT", "freight_carrier", "2026-08-11T00:10:00Z", Vec3(0.0, 0.0, 0.0), 87.0, 18.5, 12000.0))
+    radar.ingest_ping(Ping("MV_ZEN_FERRY", "ferry", "2026-08-11T00:10:02Z", Vec3(108.0, 0.0, -42.0), 265.0, 22.0, 9500.0))
     radar.set_self("MV_ZEN_FREIGHT", "freight_carrier")
-    radar.broadcast(Vec3(0.0, 0.0, 0.0), 87.0, 18.5)
-    radar.broadcast(Vec3(100.0, 0.0, -40.0), 265.0, 22.0)
-    assert len(radar.visible_pings()) == 1
+    visible = radar.visible_pings()
+    assert len(visible) == 1
+    assert visible[0].vessel_id == "MV_ZEN_FERRY"
 
 
 def test_nearest_visible():
     radar = RadarService()
+    radar.enable_multi_mode()
+    radar.ingest_ping(Ping("MV_ZEN_FREIGHT", "freight_carrier", "2026-08-11T00:10:00Z", Vec3(0.0, 0.0, 0.0), 0.0, 0.0, 1000.0))
+    radar.ingest_ping(Ping("MV_ZEN_FERRY", "ferry", "2026-08-11T00:10:01Z", Vec3(10.0, 0.0, 0.0), 180.0, 20.0, 1000.0))
     radar.set_self("MV_ZEN_FREIGHT", "freight_carrier")
-    radar.broadcast(Vec3(0.0, 0.0, 0.0), 0.0, 0.0)
-    radar.broadcast(Vec3(10.0, 0.0, 0.0), 180.0, 20.0)
     nearest = radar.nearest_visible()
     assert nearest is not None
-    assert nearest.vessel_id != "MV_ZEN_FREIGHT"
+    assert nearest.vessel_id == "MV_ZEN_FERRY"
 
 
 def test_avoidance_triggered_within_cpa():
     radar = RadarService()
+    radar.enable_multi_mode()
+    radar.ingest_ping(Ping("MV_ZEN_FREIGHT", "freight_carrier", "2026-08-11T00:10:00Z", Vec3(0.0, 0.0, 0.0), 0.0, 0.0, 1000.0))
+    radar.ingest_ping(Ping("MV_ZEN_FERRY", "ferry", "2026-08-11T00:10:01Z", Vec3(50.0, 0.0, 0.0), 180.0, 20.0, 1000.0))
     radar.set_self("MV_ZEN_FREIGHT", "freight_carrier")
-    radar.broadcast(Vec3(0.0, 0.0, 0.0), 0.0, 0.0)
-    radar.broadcast(Vec3(50.0, 0.0, 0.0), 180.0, 20.0)
     advice = radar.avoidance_advice()
     assert advice is not None
     assert advice["cpa_m"] <= 200.0
 
 
 def test_anticrash_system_evaluate():
+    from Systems.Radar.avoidance import AnticrashSystem
     radar = RadarService()
     radar.set_self("SB_ZEN_1", "speedboat")
     sys = AnticrashSystem(radar)

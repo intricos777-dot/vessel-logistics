@@ -6,7 +6,7 @@ import json
 import math
 import random
 import time
-from dataclasses import dataclass, field, asdict
+from dataclasses import dataclass, field
 from pathlib import Path
 from typing import List, Optional
 
@@ -44,15 +44,25 @@ class RadarService:
         self.policy = json.loads((REPO_ROOT / policy_path).read_text())
         self.pings: List[Ping] = []
         self.self_vessel_id: Optional[str] = None
+        self.vessel_class: str = "speedboat"
+        self._multi_mode: bool = False
 
     def set_self(self, vessel_id: str, vessel_class: str) -> None:
         self.self_vessel_id = vessel_id
         self.vessel_class = vessel_class
 
+    def enable_multi_mode(self) -> None:
+        self._multi_mode = True
+
+    def ingest_ping(self, ping: Ping) -> None:
+        if not self._multi_mode and ping.vessel_id == self.self_vessel_id:
+            return
+        self.pings.append(ping)
+
     def broadcast(self, position: Vec3, heading_deg: float, speed_knots: float, intent: str = "transit") -> Ping:
         ping = Ping(
             vessel_id=self.self_vessel_id or "unknown",
-            vessel_class=getattr(self, "vessel_class", "speedboat"),
+            vessel_class=self.vessel_class,
             timestamp_iso=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
             position=position,
             heading_deg=heading_deg,
@@ -64,6 +74,8 @@ class RadarService:
         return ping
 
     def visible_pings(self) -> List[Ping]:
+        if self._multi_mode:
+            return [p for p in self.pings if self.self_vessel_id is None or p.vessel_id != self.self_vessel_id]
         return [p for p in self.pings if p.vessel_id != self.self_vessel_id]
 
     def nearest_visible(self) -> Optional[Ping]:
@@ -79,10 +91,19 @@ class RadarService:
         nearest = self.nearest_visible()
         if not nearest:
             return None
-        cpa = self.cpa_m(Ping(self.self_vessel_id or "self", getattr(self, "vessel_class", "speedboat"), "", Vec3(), 0.0, 0.0, 0.0), nearest)
+        here = Vec3()
+        cpa = self.cpa_m(Ping(
+            vessel_id=self.self_vessel_id or "self",
+            vessel_class=self.vessel_class,
+            timestamp_iso="",
+            position=here,
+            heading_deg=0.0,
+            speed_knots=0.0,
+            range_m=0.0,
+        ), nearest)
         if cpa > self.policy.get("cpa_limit_m", 200):
             return None
-        reaction = self.policy.get("reaction", {}).get(getattr(self, "vessel_class", "speedboat"), "course_offset+fast")
+        reaction = self.policy.get("reaction", {}).get(self.vessel_class, "course_offset+fast")
         return {
             "nearest_vessel": nearest.vessel_id,
             "cpa_m": cpa,

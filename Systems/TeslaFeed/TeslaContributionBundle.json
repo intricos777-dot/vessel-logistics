@@ -1,0 +1,14 @@
+{
+  "bundle_version": "1.0.0",
+  "source": "vessel-logistics",
+  "license": "contribution",
+  "target": "Tesla AI / FSD",
+  "status": "todo_pending_approval",
+  "notes": "Pending Elon approval to integrate radar/anticrash interface into Tesla AI stack.",
+  "interfaces": {
+    "radar": "Core/RadarInterface.json",
+    "avoidance_policy": "Systems/Radar/AnticrashPolicy.json",
+    "vessel_classes": "Core/VesselTypes.json",
+    "aircraft_classes": "Systems/Aviation/AircraftClasses.json"
+  }
+}

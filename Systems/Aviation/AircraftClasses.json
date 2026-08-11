@@ -1,0 +1,71 @@
+{
+  "aircraft_classes": [
+    {
+      "id": "airliner",
+      "name": "Commercial Airliner",
+      "min_speed_knots": 140,
+      "max_speed_knots": 500,
+      "service_ceiling_ft": 41000,
+      "crew_min": 2,
+      "crew_max": 12,
+      "passenger_max": 500,
+      "radar_modes": ["active_ping", "passive_listen", "doppler_shift", "tcAS"]
+    },
+    {
+      "id": "private",
+      "name": "Private Aircraft",
+      "min_speed_knots": 60,
+      "max_speed_knots": 220,
+      "service_ceiling_ft": 15000,
+      "crew_min": 1,
+      "crew_max": 2,
+      "passenger_max": 8,
+      "radar_modes": ["active_ping", "passive_listen"]
+    },
+    {
+      "id": "cargo",
+      "name": "Cargo Aircraft",
+      "min_speed_knots": 120,
+      "max_speed_knots": 450,
+      "service_ceiling_ft": 35000,
+      "crew_min": 2,
+      "crew_max": 6,
+      "cargo_max_kg": 100000,
+      "radar_modes": ["active_ping", "passive_listen", "doppler_shift", "tcAS"]
+    },
+    {
+      "id": "rotorcraft",
+      "name": "Rotorcraft",
+      "min_speed_knots": 0,
+      "max_speed_knots": 140,
+      "service_ceiling_ft": 15000,
+      "crew_min": 1,
+      "crew_max": 4,
+      "passenger_max": 12,
+      "radar_modes": ["active_ping", "passive_listen", "doppler_shift"]
+    }
+  ],
+  "navigation_presets": [
+    {
+      "id": "airliner_cross_country",
+      "aircraft_class": "airliner",
+      "min_altitude_ft": 10000,
+      "max_speed_knots": 450,
+      "weather_limit_icao": "moderate"
+    },
+    {
+      "id": "private_cruise",
+      "aircraft_class": "private",
+      "min_altitude_ft": 2000,
+      "max_speed_knots": 180,
+      "weather_limit_icao": "vfr"
+    },
+    {
+      "id": "cargo_transit",
+      "aircraft_class": "cargo",
+      "min_altitude_ft": 8000,
+      "max_speed_knots": 380,
+      "weather_limit_icao": "moderate"
+    }
+  ]
+}

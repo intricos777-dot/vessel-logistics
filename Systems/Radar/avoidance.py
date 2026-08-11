@@ -20,13 +20,13 @@ class AnticrashSystem:
         advice = self.radar.avoidance_advice()
         return {
             "status": "ok",
-            "broadcast": asdict(self.radar.pings[-1]) if self.radar.pings else None,
+            "broadcast": _asdict(self.radar.pings[-1]) if self.radar.pings else None,
             "visible_count": len(self.radar.visible_pings()),
             "advice": advice
         }
 
 
-def asdict(ping: Ping) -> dict:
+def _asdict(ping: Ping) -> dict:
     return {
         "vessel_id": ping.vessel_id,
         "vessel_class": ping.vessel_class,

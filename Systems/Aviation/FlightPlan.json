@@ -1,0 +1,18 @@
+{
+  "flight_id": "FLT-ZEN-001",
+  "aircraft_class": "airliner",
+  "origin": {"icao": "KLAX", "lat": 33.94, "lon": -118.41, "alt_ft": 0},
+  "destination": {"icao": "KJFK", "lat": 40.64, "lon": -73.78, "alt_ft": 0},
+  "cruise_alt_ft": 35000,
+  "waypoints": [
+    {"lat": 34.05, "lon": -117.0, "alt_ft": 18000, "action": "climb"},
+    {"lat": 36.0, "lon": -105.0, "alt_ft": 35000, "action": "cruise"},
+    {"lat": 39.0, "lon": -90.0, "alt_ft": 35000, "action": "cruise"},
+    {"lat": 39.5, "lon": -74.5, "alt_ft": 18000, "action": "descent"}
+  ],
+  "avoidance": {
+    "enabled": true,
+    "echolocation_modes": ["active_ping", "doppler_shift"],
+    "policy": "Systems/Radar/AnticrashPolicy.json"
+  }
+}
