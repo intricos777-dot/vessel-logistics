@@ -1,3 +1,4 @@
+<!-- Watermark: Living_Sin (intricos777-dot) + AI agents (Hermes, Lia, opencode) - collaborative work -->
 # Radar Anticrash System
 
 Every vessel broadcasts a ping with position, heading, speed, and intent. Other vessels ingest all visible pings, compute closest point of approach (CPA), and trigger avoidance advice when another vessel is within `cpa_limit_m`.

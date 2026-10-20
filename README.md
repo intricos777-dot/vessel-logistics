@@ -1,3 +1,4 @@
+<!-- Watermark: Living_Sin (intricos777-dot) + AI agents (Hermes, Lia, opencode) - collaborative work -->
 # Vessel Logistics
 
 Unified shipping, receiving, and navigation systems for watercraft from large freight carriers down to speed boats.

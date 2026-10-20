@@ -1,3 +1,4 @@
+<!-- Watermark: Living_Sin (intricos777-dot) + AI agents (Hermes, Lia, opencode) - collaborative work -->
 # Tesla AI Contribution Feed
 
 This directory contains a standardized collision-avoidance telemetry bundle derived from vessel-logistics radar/anticrash systems.
